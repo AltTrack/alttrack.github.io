@@ -1,0 +1,420 @@
+body {
+  font-family:'Open Sans';
+  background:#222;
+  color:#fff;
+}
+h1 {
+  font-family:'Montserrat';
+}
+.site-canvas {
+  position:relative;
+}
+
+.select-coins {
+  margin:60px 5% 145px 5%;
+  -webkit-transition:350ms ease-in-out;
+  transition:350ms ease-in-out;
+}
+@media (min-width: 580px) {
+  .select-coins {
+    margin-bottom:75px;
+  }
+  .coins-selected .select-coins {
+    margin-right:170px;
+  }
+}
+@media (min-width: 900px) {
+  .select-coins {
+    margin:100px auto 75px;
+    width:90%;
+    max-width:740px;
+  }
+  .coins-selected .select-coins {
+    margin-right:auto;
+    -webkit-transform:translate3d(-70px,0,0);
+            transform:translate3d(-70px,0,0);
+  }
+}
+@media (min-width: 1080px) {
+  .coins-selected .select-coins {
+    margin-right:auto;
+    -webkit-transform:translate3d(-50px,0,0);
+            transform:translate3d(-50px,0,0);
+  }
+}
+.select-coins_title {
+  font-family:'Montserrat';
+  font-size:1.4em;
+  font-weight:700;
+  max-width:300px;
+  margin-bottom:30px;
+}
+@media (min-width: 600px) {
+  .select-coins_title {
+    font-size:2.8em;
+    max-width:600px;
+    margin-bottom:60px;
+  }
+}
+@media (min-width: 900px) {
+  .select-coins_title {
+    font-size:3.5em;
+  }
+}
+.coin {
+  margin:0 0 15px;
+  padding:10px;
+  font-size:0.7em;
+  background:rgba(255,255,255,0.05);
+  border:1px solid transparent;
+  border-radius:6px;
+  -webkit-transition:150ms ease-in-out;
+  transition:150ms ease-in-out;
+  -webkit-box-sizing:border-box;
+          box-sizing:border-box;
+  cursor:pointer;
+}
+.coin:hover {
+  background:rgba(255,255,255,0.1);
+}
+.coin.selected {
+  border:1px dotted rgba(255,255,255,0.4);
+  background:rgba(255,255,255,0.1);
+}
+@media (min-width: 580px) {
+  .coin {
+    padding:15px;
+    font-size:1em;
+  }
+}
+.select-coins .coin-title {
+  padding:0 15px;
+  background:none;
+  opacity:0.5;
+}
+.coin_c {
+  margin:0 15px 0 0;
+  float:left;
+}
+.coin_details {
+  float:right;
+}
+.coin_details .coin_c {
+  margin:0 0 0 15px;
+  width:70px;
+  text-align:right;
+}
+@media (min-width: 580px) {
+  .coin_details .coin_c  {
+    width:110px;
+  }
+}
+.select-coins-next {
+  position:fixed;
+  left:0;
+  right:0;
+  bottom:0;
+  -webkit-transition:350ms ease-in-out;
+  transition:350ms ease-in-out;
+}
+@media (min-width: 900px) {
+  .coins-selected .select-coins-next {
+    -webkit-transform:translate3d(-90px,0,0);
+            transform:translate3d(-90px,0,0);
+  }
+}
+@media (min-width: 1080px) {
+  .coins-selected .select-coins-next {
+    -webkit-transform:translate3d(-50px,0,0);
+            transform:translate3d(-50px,0,0);
+  }
+}
+
+.select-coins-next_center {
+  position:relative;
+  margin:auto;
+  width:90%;
+  max-width:740px;
+}
+.select-coins-next_box {
+  position:fixed;
+  right:0;
+  bottom:0;
+  width:100%;
+  padding:0 15px;
+  background:#222;
+  -webkit-box-sizing:border-box;
+          box-sizing:border-box;
+  -webkit-transform:translate3d(0,20%,0);
+          transform:translate3d(0,20%,0);
+  -webkit-transition:350ms ease-in-out;
+  transition:350ms ease-in-out;
+  opacity:0;
+}
+@media (min-width: 580px) {
+  .select-coins-next_box {
+    margin:15px;
+    padding:15px;
+    width:auto;
+    background:none;
+  }
+}
+@media (min-width: 900px) {
+  .select-coins-next_box {
+    position:absolute;
+    margin:40px;
+    margin:40px;
+    left:100%;
+    right:auto;
+    bottom:0;
+  }
+}
+.select-coins-next_box.active {
+  -webkit-transform:translate3d(0,0,0);
+          transform:translate3d(0,0,0);
+  opacity:1;
+}
+.select-coins-next_coins {
+  margin:0 0 10px;
+  max-height: 80vh;
+  overflow-x:hidden;
+  overflow-y: auto;
+  display:none;
+}
+@media (min-width: 580px) {
+  .select-coins-next_coins {
+    display:block;
+  }
+}
+.select-coins-next_coins span,
+.select-coins-next_button {
+  margin:20px 0;
+  padding:15px 35px;
+  background:#fff;
+  border-radius:4px;
+  cursor:pointer;
+  color:#222;
+}
+.select-coins-next_button {
+  float:right;
+}
+.select-coins-next_coins span {
+  position:relative;
+  margin:4px 0 0;
+  padding:6px 0 6px;
+  font-size:0.8em;
+  background:none;
+  border-bottom:1px dotted rgba(255,255,255,0.1);
+  border-radius:0;
+  color:#fff;
+  -webkit-animation:150ms coinSlideUp;
+          animation:150ms coinSlideUp;
+  display:block;
+}
+@-webkit-keyframes coinSlideUp {
+  0%{opacity:0;margin-bottom:-20px}
+}
+@keyframes coinSlideUp {
+  0%{opacity:0;margin-bottom:-20px}
+}
+.select-coins-next_coins span:before,
+.select-coins-next_coins span:after {
+  position:absolute;
+  margin:auto;
+  top:0;
+  right:5px;
+  bottom:0;
+  width:2px;
+  height:12px;
+  background:#fff;
+  -webkit-transform:rotate(45deg);
+          transform:rotate(45deg);
+}
+.select-coins-next_coins span:hover:before,
+.select-coins-next_coins span:hover:after {
+  content:'';
+}
+.select-coins-next_coins span:after {
+  -webkit-transform:rotate(-45deg);
+          transform:rotate(-45deg);
+}
+
+
+/* Tracker */
+
+.tracker {
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  text-align:center;
+  font-size:0px;
+  overflow:auto;
+}
+.tracker_coin {
+  position:relative;
+  width:100%;
+  height:200px;
+  margin-bottom:60px;
+  display:inline-block;
+}
+.tracker_coin:last-child {
+  margin-bottom:120px;
+}
+@media (min-width:600px) {
+  .tracker_coin {
+    width:50%;
+    height:40vh;
+    min-height:250px;
+    margin-bottom:0;
+  }
+  .tracked-coins--l5 .tracker_coin {
+    height:33.333vh;
+    min-height:33.333vh;
+  }
+}
+@media (min-width:1000px) {
+  .tracker_coin {
+    width:33.333%;
+    height:50vh;
+    min-height:50vh;
+  }
+}
+@media (min-width:1100px) {
+  .tracker_coin {
+    width:25%;
+  }
+  .tracked-coins--l5 .tracker_coin {
+    width:33.333%;
+    height:50vh;
+    min-height:50vh;
+  }
+}
+@media (min-width:1250px) {
+  .tracker_coin {
+    width:20%;
+  }
+  .tracked-coins--l5 .tracker_coin {
+    height:100vh;
+    min-height:100vh;
+  }
+}
+.tracker-wrap {
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  font-size:16px;
+}
+.tracker_coin-name,
+.tracker_coin-btc,
+.tracker_coin-usd,
+.tracker_coin-rank {
+  position:absolute;
+  top:45%;
+  left:50%;
+  width:90%;
+  -webkit-transform:translate(-50%,-50%);
+          transform:translate(-50%,-50%);
+  font-family:'Montserrat';
+  font-size:3em;
+  font-weight:700;
+}
+.tracker_coin-btc,
+.tracker_coin-usd,
+.tracker_coin-rank {
+  margin:auto;
+  top:105%;
+  left:-500px;
+  right:-500px;
+  width:auto;
+  font-size:0.6em;
+  -webkit-transform:translate(0,0);
+          transform:translate(0,0);
+  opacity:0.6;
+}
+.tracker_coin-usd {
+  margin-top:40px;
+  font-size:0.4em;
+}
+
+.tracker_coin-rank {
+  top:auto;
+  bottom:100%;
+  margin-bottom:20px;
+}
+
+.tracker_settings {
+  position:fixed;
+  left:0;
+  right:0;
+  bottom:0;
+  padding:15px;
+  font-size:16px;
+}
+.tracker_settings-button {
+  color:#fff;
+  padding:15px;
+  float:left;
+  border-radius:4px;
+  background:rgba(255,255,255,0.1);
+  cursor:pointer;
+}
+.tracker_settings-coinmarket {
+  color:#fff;
+  padding:15px;
+  float:right;
+  opacity:0.5;
+}
+.tracker_settings-coinmarket a {
+  color:#fff;
+  text-decoration:none;
+}
+
+.clearfix:after {
+  display:table;
+  clear:both;
+  content:'';
+}
+
+.site-loader {
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  background:#222;
+  z-index:9999999;
+}
+.site-loader span {
+  position:fixed;
+  margin:auto;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  width:50px;
+  height:50px;
+  border:4px solid #fff;
+  border-right-color:transparent;
+  border-radius:100%;
+  -webkit-box-sizing:border-box;
+          box-sizing:border-box;
+  -webkit-animation:700ms spinLoader infinite linear;
+          animation:700ms spinLoader infinite linear;
+}
+@-webkit-keyframes spinLoader {
+  100%{-webkit-transform:rotate(360deg);transform:rotate(360deg);}
+}
+@keyframes spinLoader {
+  100%{-webkit-transform:rotate(360deg);transform:rotate(360deg);}
+}
+.fade-enter-active, .fade-leave-active {
+  -webkit-transition: opacity .5s;
+  transition: opacity .5s
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0
+}
