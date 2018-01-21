@@ -35,7 +35,7 @@
     </div>
     </transition>
     <transition name="fade">
-    <div class="select-coins-next" v-if="!setup">
+    <div class="select-coins-next" v-if="!setup && loaded">
       <div class="select-coins-next_center">
         <div class="select-coins-next_box" v-bind:class="{'active' : coinsToTrack.length }">
           <div class="select-coins-next_coins">

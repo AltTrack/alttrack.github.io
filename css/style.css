@@ -350,6 +350,10 @@ h1 {
   bottom:0;
   padding:15px;
   font-size:16px;
+  animation:650ms fadeSettingsIn ease-in-out;
+}
+@keyframes fadeSettingsIn {
+  0%{opacity:0;transform: translate3d(0,25%,0);}
 }
 .tracker_settings-button {
   color:#fff;

@@ -37,8 +37,12 @@
       },
       track: function() {
         if(this.coinsToTrack.length) {
-          this.setup = true;
-          this.saveCoins();
+          this.loaded = false;
+          setTimeout(() => {
+            this.setup = true;
+            this.loaded = true;
+            this.saveCoins();
+          }, 500)
         }
       },
       updatedTrackedCoins: function() {
@@ -54,7 +58,7 @@
         }, this.refreshSeconds * 1000);
       },
       getSavedCoins: function() {
-        this.cachedCoins = store.get('trackedCoins');
+        this.cachedCoins = store.get('trackedCoins') || [];
         if(!this.coinsToTrack.length && this.cachedCoins.length) {
           this.coinsToTrack = this.cachedCoins;
         }
