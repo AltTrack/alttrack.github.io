@@ -352,6 +352,9 @@ h1 {
   bottom:100%;
   margin-bottom:20px;
 }
+.tracker_coin-name span {
+  text-shadow: 5px 5px 0 rgba(0, 0, 0, 0.5);
+}
 
 .tracker_settings {
   position:fixed;
