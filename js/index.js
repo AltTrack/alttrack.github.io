@@ -30,7 +30,7 @@
         if(this.isCoinSelected(coin)){
            this.coinsToTrack =  this.coinsToTrack.filter(c => c.id !== coin.id);
         }else{
-          this.coinsToTrack.push(coin);
+          this.coinsToTrack.push({ name: coin.name, id: coin.id });
         }
       },
       isCoinSelected: function(coin) {
