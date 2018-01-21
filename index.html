@@ -1,101 +1,89 @@
 <!DOCTYPE html>
 <html lang="en" >
-
 <head>
   <meta charset="UTF-8">
-  <title>Crypto Tracker</title>
+  <title>Alt Track</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
   <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:300,400'>
-
-      <link rel="stylesheet" href="css/style.css">
-
-  
+  <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
-
   <div class="site-canvas" id="app" v-bind:class="{'coins-selected' : coinsToTrack.length }">
-  
-  <!--  Select Coins / Setup  -->
-  <transition name="fade">
-  <div class="select-coins" v-if="coinData && !setup">
-    <div class="select-coins_title">Select the coins you would like to track?</div>
-    <div class="coin coin-title clearfix">
-      <div class="coin_c coin_name">COIN</div>
-      <div class="coin_details">
-        <div class="coin_c coin_btc">BTC</div>
-        <div class="coin_c coin_usb">USD</div>
+
+    <!--  Select Coins / Setup  -->
+    <transition name="fade">
+    <div class="select-coins" v-if="coinData && !setup && loaded">
+      <div class="select-coins_title">
+        Select the coins you would like to track?
       </div>
-    </div>
-    <div class="coin clearfix" v-for="coin in coinData" v-on:click="selectCoin(coin)" v-bind:class="{'selected' : isCoinSelected(coin) }">
-      <div class="coin_c coin_name">{{coin.name}}</div>
-      <div class="coin_details">
-        <div class="coin_c coin_btc">{{coin.price_btc}}</div>
-        <div class="coin_c coin_usb">${{coin.price_usd}}</div>
-      </div>
-    </div>
-  </div>
-  </transition>
-  <transition name="fade">
-  <div class="select-coins-next" v-if="!setup">
-    <div class="select-coins-next_center">
-      <div class="select-coins-next_box" v-bind:class="{'active' : coinsToTrack.length }">
-        <div class="select-coins-next_coins">
-          <span v-for="coin in coinsToTrack" v-on:click="selectCoin(coin)">{{coin.name}}</span>
+      <div class="coin coin-title clearfix">
+        <div class="coin_c coin_name">COIN</div>
+        <div class="coin_details">
+          <div class="coin_c coin_btc">BTC</div>
+          <div class="coin_c coin_usb">USD</div>
         </div>
-        <div class="select-coins-next_button" v-on:click="track()">
-          Next
+      </div>
+      <div class="coin clearfix" v-for="coin in coinData" v-on:click="selectCoin(coin)" v-bind:class="{'selected' : isCoinSelected(coin) }">
+        <div class="coin_c coin_name">{{coin.name}}</div>
+        <div class="coin_details">
+          <div class="coin_c coin_btc">{{coin.price_btc}}</div>
+          <div class="coin_c coin_usb">${{coin.price_usd}}</div>
         </div>
       </div>
     </div>
-  </div>
-  </transition>
-  
-  <!--  Tracker  -->
-  <transition name="fade">
-  <div class="tracker" v-if="setup" v-bind:class="{'tracked-coins--l5' : coinsToTrack.length <= 5}">
-    <div class="tracker_coin" v-for="coin in updatedTrackedCoins()">
-      <div class="tracker-wrap">
-        <div class="tracker_coin-name">
-          {{coin.name}}
-          <div class="tracker_coin-btc">
-            {{coin.price_btc}}
+    </transition>
+    <transition name="fade">
+    <div class="select-coins-next" v-if="!setup">
+      <div class="select-coins-next_center">
+        <div class="select-coins-next_box" v-bind:class="{'active' : coinsToTrack.length }">
+          <div class="select-coins-next_coins">
+            <span v-for="coin in coinsToTrack" v-on:click="selectCoin(coin)">{{coin.name}}</span>
           </div>
-          <div class="tracker_coin-usd">
-            ${{coin.price_usd}}
-          </div>
-          <div class="tracker_coin-rank">
-            #{{coin.rank}}
+          <div class="select-coins-next_button" v-on:click="track()">
+            Next
           </div>
         </div>
       </div>
     </div>
-    <div class="tracker_settings">
-      <div class="tracker_settings-button" v-on:click="setup = false">Settings</div>
-      <div class="tracker_settings-coinmarket">All data is provided by <a href="https://coinmarketcap.com">coinmarketcap.com</a>.</div>
+    </transition>
+
+    <!--  Tracker  -->
+    <transition name="fade">
+    <div class="tracker" v-if="setup && loaded" v-bind:class="{'tracked-coins--l5' : coinsToTrack.length <= 5}">
+      <div class="tracker_coin" v-for="coin in updatedTrackedCoins()">
+        <div class="tracker-wrap">
+          <div class="tracker_coin-name">
+            {{coin.name}}
+            <div class="tracker_coin-btc">
+              {{coin.price_btc}}
+            </div>
+            <div class="tracker_coin-usd">
+              ${{coin.price_usd}}
+            </div>
+            <div class="tracker_coin-rank">
+              #{{coin.rank}}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tracker_settings">
+        <div class="tracker_settings-button" v-on:click="setup = false">Settings</div>
+        <div class="tracker_settings-coinmarket">All data is provided by <a href="https://coinmarketcap.com">coinmarketcap.com</a>.</div>
+      </div>
     </div>
+    <transition>
+
+    <transition name="fade">
+    <div class="site-loader" v-if="!loaded">
+      <span></span>
+    </div>
+    <transition>
   </div>
-  <transition>
-  
-  <transition name="fade">
-  <div class="site-loader" v-if="!loaded">
-    <span></span>
-  </div>
-  <transition>
-</div>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.2.4/vue.min.js'></script>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.2.4/vue.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.2.1/vue-resource.min.js'></script>
 <script src='https://cdn.rawgit.com/nbubna/store/master/dist/store2.min.js'></script>
-
-  
-
-    <script  src="js/index.js"></script>
-
-
-
-
+<script  src="js/index.js"></script>
 </body>
-
 </html>

@@ -5,6 +5,7 @@
       coinData: [],
       refreshSeconds: 1,
       coinsToTrack: [],
+      cachedCoins: [],
       setup: false,
       loaded: false
     },
@@ -13,7 +14,7 @@
         this.loadingCoinData = true;
         this.$http.get('https://api.coinmarketcap.com/v1/ticker/').then(response => {
           this.coinData = response.body;
-          
+
           setTimeout(() => {
             this.getCoinInfo();
           },this.refreshSeconds * 1000);
@@ -41,7 +42,7 @@
         }
       },
       updatedTrackedCoins: function() {
-        if(this.coinsToTrack.length && this.coinData.length) { 
+        if(this.coinsToTrack.length && this.coinData.length) {
           let coins = this.coinData.filter(c => this.coinsToTrack.some(ct => ct.id === c.id));
           return coins;
         }
@@ -53,16 +54,16 @@
         }, this.refreshSeconds * 1000);
       },
       getSavedCoins: function() {
-        let cachedCoins = store.get('trackedCoins');
-        if(!this.coinsToTrack.length && cachedCoins.length) {
-          this.coinsToTrack = cachedCoins;
+        this.cachedCoins = store.get('trackedCoins');
+        if(!this.coinsToTrack.length && this.cachedCoins.length) {
+          this.coinsToTrack = this.cachedCoins;
         }
-        return cachedCoins.length > 0;
+        this.track();
       }
     },
     mounted() {
+      this.getSavedCoins();
       this.getCoinInfo();
-      this.getSavedCoins()
     }
   });
 })();
