@@ -355,13 +355,19 @@ h1 {
 @keyframes fadeSettingsIn {
   0%{opacity:0;transform: translate3d(0,25%,0);}
 }
-.tracker_settings-button {
+.tracker_settings-button,
+.tracker_settings-twitter {
+  margin-right:15px;
   color:#fff;
   padding:15px;
   float:left;
   border-radius:4px;
   background:rgba(255,255,255,0.1);
+  text-decoration: none;
   cursor:pointer;
+}
+.tracker_settings-twitter {
+  background:none;
 }
 .tracker_settings-coinmarket {
   color:#fff;
