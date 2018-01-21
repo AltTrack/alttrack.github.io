@@ -48,6 +48,7 @@ h1 {
   font-weight:700;
   max-width:300px;
   margin-bottom:30px;
+  text-shadow: 5px 5px 0 rgba(0, 0, 0, 0.5);
 }
 @media (min-width: 600px) {
   .select-coins_title {
