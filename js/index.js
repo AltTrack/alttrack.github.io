@@ -7,6 +7,7 @@
       refreshSeconds: 20,
       coinsToTrack: [],
       cachedCoins: [],
+      portfolio: false,
       setup: false,
       loaded: false
     },
@@ -68,6 +69,11 @@
           this.coinsToTrack = this.cachedCoins;
         }
         this.track();
+      },
+      closePortfolio: async function() {
+        await this.saveCoins();
+        console.log(store.get('trackedCoins'));
+        this.portfolio = false;
       }
     },
     mounted() {

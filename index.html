@@ -34,7 +34,7 @@
 
 </head>
 <body>
-  <div class="site-canvas" id="app" v-bind:class="{'coins-selected' : coinsToTrack.length }">
+  <div class="site-canvas" id="app" v-bind:class="{'coins-selected' : coinsToTrack.length, 'portfolio-view' : portfolio }">
 
     <!--  Select Coins / Setup  -->
     <transition name="fade">
@@ -97,18 +97,46 @@
       </div>
       <div class="tracker_settings">
         <div class="tracker_settings-button" v-on:click="setup = false">Settings</div>
+        <div class="tracker_settings-button" v-on:click="portfolio = true">My Portfolio</div>
         <a href="https://twitter.com/home?status=Check%20out%20Alt-Track,%20simple%20online%20%23crypto%20tracker%20https%3A//alttrack.github.io/%20%23bitcoin%20%23ether%20%23litecoin%20%23EOS%20%23STEEM%20%23VergeCoin"
         target="_blank" class="tracker_settings-twitter">Share on Twitter</a>
         <div class="tracker_settings-coinmarket">All data is provided by <a href="https://coinmarketcap.com">coinmarketcap.com</a>.</div>
       </div>
     </div>
-    <transition>
+    </transition>
+
+    <transition name="fade">
+    <div class="portfolio" v-if="portfolio && setup && loaded">
+      <div class="portfolio_close" v-on:click="closePortfolio()"></div>
+      <div class="portfolio_coins">
+        <div class="portfolio_title">
+          My Portfolio
+        </div>
+        <div class="portfolio-list">
+          <div class="portfolio-list_coin clearfix" v-for="coin in coinsToTrack">
+            <div class="portfolio-list_coin-section">
+              <div class="portfolio-list_coin-name">Your {{coin.name}} Quantity</div>
+              <div class="portfolio-list_coin-quantity">
+                <input type="number" step="any" v-model="coin.quantity" placeholder="0.0452366">
+              </div>
+            </div>
+            <div class="portfolio-list_coin-section">
+              <div class="portfolio-list_coin-name">Your {{coin.name}} Cost (USD)</div>
+              <div class="portfolio-list_coin-quantity">
+                <input type="number" step="any" v-model="coin.cost" placeholder="42">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </transition>
 
     <transition name="fade">
     <div class="site-loader" v-if="!loaded">
       <span></span>
     </div>
-    <transition>
+    </transition>
   </div>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.2.4/vue.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.2.1/vue-resource.min.js'></script>

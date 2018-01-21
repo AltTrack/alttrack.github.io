@@ -42,7 +42,8 @@ h1 {
             transform:translate3d(-50px,0,0);
   }
 }
-.select-coins_title {
+.select-coins_title,
+.portfolio_title {
   font-family:'Montserrat';
   font-size:1.4em;
   font-weight:700;
@@ -51,14 +52,16 @@ h1 {
   text-shadow: 5px 5px 0 rgba(0, 0, 0, 0.5);
 }
 @media (min-width: 600px) {
-  .select-coins_title {
+  .select-coins_title,
+  .portfolio_title {
     font-size:2.8em;
     max-width:600px;
     margin-bottom:60px;
   }
 }
 @media (min-width: 900px) {
-  .select-coins_title {
+  .select-coins_title,
+  .portfolio_title {
     font-size:3.5em;
   }
 }
@@ -257,6 +260,10 @@ h1 {
   position:relative;
   text-align:center;
   font-size:0px;
+  transition: 500ms opacity ease-in-out;
+}
+.portfolio-view .tracker {
+  opacity: 0.01;
 }
 .tracker_coin {
   position:relative;
@@ -319,7 +326,8 @@ h1 {
 .tracker_coin-name,
 .tracker_coin-btc,
 .tracker_coin-usd,
-.tracker_coin-rank {
+.tracker_coin-rank,
+.tracker_coin-user {
   position:absolute;
   top:45%;
   left:50%;
@@ -392,6 +400,78 @@ h1 {
 .tracker_settings-coinmarket a {
   color:#fff;
   text-decoration:none;
+}
+
+
+/* Portfolio */
+
+.portfolio {
+  position: fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0);
+  overflow-x:hidden;
+  overflow-y: auto;
+  z-index: 500;
+}
+.portfolio_close {
+  position: fixed;
+  top:20px;
+  right:20px;
+  width:60px;
+  height:60px;
+  cursor:pointer;
+}
+.portfolio_close:before,
+.portfolio_close:after {
+  position: absolute;
+  margin:auto;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  width:40px;
+  height:2px;
+  background:#fff;
+  transform:rotate(45deg);
+  content:'';
+}
+.portfolio_close:after {
+  transform:rotate(-45deg);
+}
+.portfolio_coins {
+  margin:120px auto;
+  width: 90%;
+  max-width: 740px;
+  box-sizing: border-box;
+}
+
+.portfolio-list_coin {
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.portfolio-list_coin-section {
+  width:calc(50% - 20px);
+  float:left;
+}
+.portfolio-list_coin-section:last-child {
+  margin-left:40px;
+}
+.portfolio-list_coin-name {
+  padding-bottom:10px;
+}
+.portfolio-list_coin input,
+.portfolio-list_coin input:focus {
+  width:100%;
+  padding:10px;
+  font-size:1.1em;
+  color:#fff;
+  outline:1px solid transparent;
+  border:1px solid rgba(255,255,255,0.3);
+  background:rgba(255,255,255,0.1);
+  box-sizing: border-box;
 }
 
 .clearfix:after {
