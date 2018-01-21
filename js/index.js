@@ -3,7 +3,8 @@
     el: '#app',
     data: {
       coinData: [],
-      refreshSeconds: 1,
+      coinDataLimit: 1,
+      refreshSeconds: 20,
       coinsToTrack: [],
       cachedCoins: [],
       setup: false,
@@ -12,7 +13,7 @@
     methods: {
       getCoinInfo: function() {
         this.loadingCoinData = true;
-        this.$http.get('https://api.coinmarketcap.com/v1/ticker/').then(response => {
+        this.$http.get('https://api.coinmarketcap.com/v1/ticker/?limit=' + this.coinDataLimit * 100).then(response => {
           this.coinData = response.body;
 
           setTimeout(() => {
@@ -34,6 +35,10 @@
       },
       isCoinSelected: function(coin) {
         return this.coinsToTrack.some(c => c.id === coin.id);
+      },
+      loadMore: function() {
+        this.coinDataLimit++;
+        this.getCoinInfo();
       },
       track: function() {
         if(this.coinsToTrack.length) {
@@ -70,4 +75,5 @@
       this.getCoinInfo();
     }
   });
+
 })();

@@ -56,6 +56,9 @@
           <div class="coin_c coin_usb">${{coin.price_usd}}</div>
         </div>
       </div>
+      <div class="load-more" v-on:click="loadMore()">
+        Load More Coins
+      </div>
     </div>
     </transition>
     <transition name="fade">
@@ -87,7 +90,7 @@
               ${{coin.price_usd}}
             </div>
             <div class="tracker_coin-rank">
-              #{{coin.rank}}
+              #{{coin.rank}} : {{coin.percent_change_1h}}%
             </div>
           </div>
         </div>

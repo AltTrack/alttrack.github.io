@@ -239,6 +239,16 @@ h1 {
           transform:rotate(-45deg);
 }
 
+.load-more {
+  margin: 15px 0;
+  text-align: center;
+  font-size: 0.9em;
+  padding: 30px 0;
+  border: 1px dotted rgba(255,255,255,0.2);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
 
 /* Tracker */
 
