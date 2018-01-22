@@ -79,7 +79,7 @@
     <!--  Tracker  -->
     <transition name="fade">
     <div class="tracker" v-if="setup && loaded" v-bind:class="{'tracked-coins--l5' : coinsToTrack.length <= 5}">
-      <div class="tracker_coin" v-for="coin in updatedTrackedCoins()">
+      <div class="tracker_coin" v-for="coin in updatedTrackedCoins()" v-bind:class="{'user-data' : getCoinQuantity(coin)}">
         <div class="tracker-wrap">
           <div class="tracker_coin-name">
             <span>{{coin.name}}</span>
@@ -91,6 +91,9 @@
             </div>
             <div class="tracker_coin-rank">
               #{{coin.rank}} : {{coin.percent_change_1h}}%
+            </div>
+            <div class="tracker_coin-user" v-if="getCoinQuantity(coin)">
+              ${{marketValue(coin)}} : {{valueGain(coin)}}%
             </div>
           </div>
         </div>

@@ -275,6 +275,14 @@ h1 {
 .tracker_coin:last-child {
   margin-bottom:120px;
 }
+
+@media (max-width:599px) {
+  .tracker_coin.user-data {
+    height:320px;
+    margin-bottom: -20px;
+  }
+}
+
 @media (min-width:600px) {
   .tracker_coin {
     width:50%;
@@ -340,7 +348,8 @@ h1 {
 }
 .tracker_coin-btc,
 .tracker_coin-usd,
-.tracker_coin-rank {
+.tracker_coin-rank,
+.tracker_coin-user {
   margin:auto;
   top:105%;
   left:-500px;
@@ -363,6 +372,14 @@ h1 {
 }
 .tracker_coin-name span {
   text-shadow: 5px 5px 0 rgba(0, 0, 0, 0.5);
+}
+.tracker_coin-user {
+  top:auto;
+  bottom:190%;
+  margin-bottom:20px;
+  font-size:0.4em;
+  font-weight:400;
+  opacity: 0.5;
 }
 
 .tracker_settings {

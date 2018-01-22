@@ -70,9 +70,35 @@
         }
         this.track();
       },
+      getCoinQuantity:function(coin) {
+        let userCoin =  this.coinsToTrack.find(c => c.id === coin.id);
+        if(userCoin && userCoin.quantity) {
+          return parseFloat(userCoin.quantity);
+        }
+      },
+      getCoinCost:function(coin) {
+        let userCoin =  this.coinsToTrack.find(c => c.id === coin.id);
+        if(userCoin && userCoin.cost) {
+          return parseFloat(userCoin.cost);
+        }
+      },
+      marketValue: function(coin) {
+        if(coin){
+          let val = (this.getCoinQuantity(coin) * this.parseMoney(coin.price_usd)).toFixed(2);
+          return val;
+        }
+      },
+      valueGain:function(coin) {
+        let cost = this.getCoinCost(coin);
+        return (((this.marketValue(coin) - cost) / cost) * 100 ).toFixed(2);
+      },
+      parseMoney: function(money) {
+        if(money){
+          return Number(money.replace(/[^0-9\.]+/g,""));
+        }
+      },
       closePortfolio: async function() {
         await this.saveCoins();
-        console.log(store.get('trackedCoins'));
         this.portfolio = false;
       }
     },
