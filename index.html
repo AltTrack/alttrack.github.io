@@ -64,7 +64,9 @@
         <div class="coin_c coin_name">{{coin.name}}</div>
         <div class="coin_details">
           <div class="coin_c coin_usd">${{coin.price_usd}}</div>
-          <div class="coin_c coin_convert">{{convertPrice(coin)}}</div>
+          <transition name="fade">
+          <div class="coin_c coin_convert" v-if="convertPrice(coin)">{{convertPrice(coin)}}</div>
+          </transition>
         </div>
       </div>
       <div class="load-more" v-on:click="loadMore()">
