@@ -395,7 +395,7 @@ h1 {
   0%{opacity:0;transform: translate3d(0,25%,0);}
 }
 .tracker_settings-button,
-.tracker_settings-twitter {
+.tracker_settings-link {
   margin-right:15px;
   color:#fff;
   padding:15px;
@@ -405,8 +405,12 @@ h1 {
   text-decoration: none;
   cursor:pointer;
 }
-.tracker_settings-twitter {
+.tracker_settings-link {
   background:none;
+  margin-right:0;
+}
+.tracker_settings-link:hover {
+  background:rgba(255,255,255,0.08);
 }
 .tracker_settings-coinmarket {
   color:#fff;
@@ -434,7 +438,7 @@ h1 {
   z-index: 500;
 }
 .portfolio_close {
-  position: fixed;
+  position: absolute;
   top:20px;
   right:20px;
   width:60px;
