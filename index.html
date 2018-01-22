@@ -43,17 +43,28 @@
         Select the coins you would like to track?
       </div>
       <div class="coin coin-title clearfix">
-        <div class="coin_c coin_name">COIN</div>
         <div class="coin_details">
-          <div class="coin_c coin_btc">BTC</div>
-          <div class="coin_c coin_usb">USD</div>
+          <div class="coin_c coin_usb">
+            <span>USD</span>
+          </div>
+          <div class="coin_c coin_btc">
+            <div class="convert" v-bind:class="{ 'tooltip-view' : !convertTooltipHide }" v-on:click="viewConvert()">
+              <div class="convert_name">
+                <div class="convert_tooltip">Click here to convert into another currency</div>
+                <div class="convert_form" v-if="convertForm">
+                  <div class="convert_currency" v-for="coin in coinData" v-on:click="changeConvert(coin.symbol)">{{coin.symbol}}</div>
+                </div>
+                <span>{{convert}}</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="coin clearfix" v-for="coin in coinData" v-on:click="selectCoin(coin)" v-bind:class="{'selected' : isCoinSelected(coin) }">
         <div class="coin_c coin_name">{{coin.name}}</div>
         <div class="coin_details">
-          <div class="coin_c coin_btc">{{coin.price_btc}}</div>
-          <div class="coin_c coin_usb">${{coin.price_usd}}</div>
+          <div class="coin_c coin_usd">${{coin.price_usd}}</div>
+          <div class="coin_c coin_convert">{{convertPrice(coin)}}</div>
         </div>
       </div>
       <div class="load-more" v-on:click="loadMore()">
@@ -84,7 +95,7 @@
           <div class="tracker_coin-name">
             <span>{{coin.name}}</span>
             <div class="tracker_coin-btc">
-              {{coin.price_btc}}
+              {{convertPrice(coin)}}
             </div>
             <div class="tracker_coin-usd">
               ${{coin.price_usd}}

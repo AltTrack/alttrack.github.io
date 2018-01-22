@@ -7,6 +7,9 @@
       refreshSeconds: 20,
       coinsToTrack: [],
       cachedCoins: [],
+      convert: 'BTC',
+      convertTooltipHide: false,
+      convertForm: false,
       portfolio: false,
       setup: false,
       loaded: false
@@ -14,9 +17,8 @@
     methods: {
       getCoinInfo: function() {
         this.loadingCoinData = true;
-        this.$http.get('https://api.coinmarketcap.com/v1/ticker/?limit=' + this.coinDataLimit * 100).then(response => {
+        this.$http.get('https://api.coinmarketcap.com/v1/ticker/?convert=' + this.convert + '&limit=' + this.coinDataLimit * 100).then(response => {
           this.coinData = response.body;
-
           setTimeout(() => {
             this.getCoinInfo();
           },this.refreshSeconds * 1000);
@@ -100,9 +102,29 @@
       closePortfolio: async function() {
         await this.saveCoins();
         this.portfolio = false;
+      },
+      viewConvert: function() {
+        this.convertTooltipHide = true;
+        this.convertForm = !this.convertForm;
+      },
+      changeConvert: function(symbol) {
+        this.convert = symbol;
+        store('convertCoin', symbol);
+        this.getCoinInfo();
+      },
+      setupConvert: function(){
+        let symbol = store.get('convertCoin');
+        if(symbol) {
+          this.convert = symbol;
+          this.convertTooltipHide = true;
+        }
+      },
+      convertPrice: function(coin){
+        return coin['price_' + this.convert.toLowerCase()]
       }
     },
     mounted() {
+      this.setupConvert();
       this.getSavedCoins();
       this.getCoinInfo();
     }

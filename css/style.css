@@ -94,7 +94,6 @@ h1 {
 .select-coins .coin-title {
   padding:0 15px;
   background:none;
-  opacity:0.5;
 }
 .coin_c {
   margin:0 15px 0 0;
@@ -104,15 +103,93 @@ h1 {
   float:right;
 }
 .coin_details .coin_c {
+  position: relative;
   margin:0 0 0 15px;
   width:70px;
+  float:right;
   text-align:right;
+}
+.coin_details .coin_c span {
+  opacity: 0.5;
+}
+.convert_name {
+  position:relative;
+  display: inline-block;
 }
 @media (min-width: 580px) {
   .coin_details .coin_c  {
     width:110px;
   }
 }
+
+/* Convert */
+.convert {
+  user-select: none;
+}
+.convert_tooltip {
+  position: absolute;
+  margin: auto;
+  left: -300px;
+  right: -300px;
+  bottom: 158%;
+  width: 240px;
+  height: 25px;
+  line-height: 25px;
+  font-size: 0.7em;
+  text-align: center;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.1);
+  opacity: 0;
+  transition: 150ms ease-in-out;
+}
+.convert.tooltip-view .convert_tooltip {
+  opacity: 1;
+}
+.convert_tooltip:before {
+  position: absolute;
+  margin: auto;
+  top: 100%;
+  left: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-top-color: rgba(255,255,255,0.1);
+  content: '';
+}
+.convert_name {
+  cursor: pointer;
+}
+
+.convert_form {
+    position: absolute;
+    margin: auto;
+    top: 122%;
+    left: -200px;
+    right: -200px;
+    width: 180px;
+    height: 200px;
+    background: #333;
+    border-radius: 4px;
+    padding: 15px;
+    overflow: auto;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.3);
+    font-size: 0.8em;
+    text-align: left;
+    z-index: 9;
+}
+
+.convert_currency {
+    margin: 3px;
+    padding: 4px;
+    background: #555;
+    border-radius: 2px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* Select Coin Next */
+
 .select-coins-next {
   position:fixed;
   left:0;
