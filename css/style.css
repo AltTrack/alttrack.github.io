@@ -481,6 +481,16 @@ h1 {
   background:rgba(255,255,255,0.1);
   text-decoration: none;
   cursor:pointer;
+  display:none;
+}
+@media (min-width:900px) {
+  .tracker_settings-button,
+  .tracker_settings-link {
+    display: block;
+  }
+}
+.button-settings {
+  display: block;
 }
 .tracker_settings-link {
   background:none;
@@ -494,6 +504,12 @@ h1 {
   padding:15px;
   float:right;
   opacity:0.5;
+  display: none;
+}
+@media (min-width:900px) {
+  .tracker_settings-coinmarket {
+    display: block;
+  }
 }
 .tracker_settings-coinmarket a {
   color:#fff;
