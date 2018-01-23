@@ -110,6 +110,7 @@
       changeConvert: function(symbol) {
         this.convert = symbol;
         store('convertCoin', symbol);
+        this.convertForm = false;
         this.getCoinInfo();
       },
       setupConvert: function(){

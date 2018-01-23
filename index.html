@@ -51,14 +51,14 @@
             <div class="convert" v-bind:class="{ 'tooltip-view' : !convertTooltipHide }" v-on:click="viewConvert()">
               <div class="convert_name">
                 <div class="convert_tooltip">Click here to convert into another currency</div>
-                <div class="convert_form" v-if="convertForm">
-                  <div class="convert_currency" v-for="coin in coinData" v-on:click="changeConvert(coin.symbol)">{{coin.symbol}}</div>
-                </div>
                 <span>{{convert}}</span>
               </div>
             </div>
           </div>
         </div>
+      </div>
+      <div class="convert_form" v-if="convertForm">
+        <div class="convert_currency" v-for="coin in coinData" v-on:click="changeConvert(coin.symbol)">{{coin.symbol}}</div>
       </div>
       <div class="coin clearfix" v-for="coin in coinData" v-on:click="selectCoin(coin)" v-bind:class="{'selected' : isCoinSelected(coin) }">
         <div class="coin_c coin_name">{{coin.name}}</div>

@@ -162,26 +162,40 @@ h1 {
 }
 
 .convert_form {
-    position: absolute;
-    margin: auto;
-    top: 122%;
-    left: -200px;
-    right: -200px;
-    width: 180px;
-    height: 200px;
-    background: #333;
-    border-radius: 4px;
+  position: relative;
+  margin: 10px auto 15px;
+  width:100%;
+  max-width: 740px;
+  background: #333;
+  border-radius: 4px;
+  padding:10px;
+  box-shadow: 0 5px 25px rgba(0,0,0,0.3);
+  font-size: 0.8em;
+  text-align: left;
+  box-sizing: border-box;
+  white-space:nowrap;
+  overflow: auto;
+}
+@media (min-width:700px) {
+  .convert_form {
     padding: 15px;
-    overflow: auto;
-    box-shadow: 0 5px 25px rgba(0,0,0,0.3);
-    font-size: 0.8em;
-    text-align: left;
-    z-index: 9;
+  }
+}
+.convert_form:before {
+    position:absolute;
+    margin:auto;
+    bottom:100%;
+    right:146px;
+    width:0;
+    height:0;
+    border:10px solid transparent;
+    border-bottom-color:#333333;
+    content:'';
 }
 
 .convert_currency {
     margin: 3px;
-    padding: 4px;
+    padding: 10px;
     background: #555;
     border-radius: 2px;
     display: inline-block;
