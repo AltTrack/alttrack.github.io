@@ -5,19 +5,26 @@
       coinData: [],
       coinDataLimit: 1,
       refreshSeconds: 20,
+
       coinsToTrack: [],
       cachedCoins: [],
+
       convert: 'BTC',
       convertTooltipHide: false,
       convertForm: false,
       portfolio: false,
+
+      routeCoins: [],
+
       setup: false,
-      loaded: false
+      loaded: false,
+      error: false
     },
     methods: {
       getCoinInfo: function() {
         this.loadingCoinData = true;
         this.$http.get('https://api.coinmarketcap.com/v1/ticker/?convert=' + this.convert + '&limit=' + this.coinDataLimit * 100).then(response => {
+          this.error = false;
           this.coinData = response.body;
           setTimeout(() => {
             this.getCoinInfo();
@@ -26,7 +33,10 @@
             this.loaded = true;
           }, 1000);
         }, response => {
-          console.log('Error');
+          this.error = true;
+          setTimeout(() => {
+            this.getCoinInfo();
+          }, 10000);
         });
       },
       selectCoin: function(coin) {
@@ -84,6 +94,8 @@
           return parseFloat(userCoin.cost);
         }
       },
+
+      // Portfolio
       marketValue: function(coin) {
         if(coin){
           let val = (this.getCoinQuantity(coin) * this.parseMoney(coin.price_usd)).toFixed(2);
@@ -103,6 +115,8 @@
         await this.saveCoins();
         this.portfolio = false;
       },
+
+      // Convert Coin to Main Coin (Default Bitcoin *King*)
       viewConvert: function() {
         this.convertTooltipHide = true;
         this.convertForm = !this.convertForm;

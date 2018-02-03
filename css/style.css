@@ -43,7 +43,8 @@ h1 {
   }
 }
 .select-coins_title,
-.portfolio_title {
+.portfolio_title,
+.site-error span {
   font-family:'Montserrat';
   font-size:1.4em;
   font-weight:700;
@@ -53,7 +54,8 @@ h1 {
 }
 @media (min-width: 600px) {
   .select-coins_title,
-  .portfolio_title {
+  .portfolio_title,
+  .site-error span {
     font-size:2.8em;
     max-width:600px;
     margin-bottom:60px;
@@ -61,7 +63,8 @@ h1 {
 }
 @media (min-width: 900px) {
   .select-coins_title,
-  .portfolio_title {
+  .portfolio_title,
+  .site-error span {
     font-size:3.5em;
   }
 }
@@ -608,7 +611,10 @@ h1 {
   content:'';
 }
 
-.site-loader {
+/* Loader */
+
+.site-loader,
+.site-error {
   position:fixed;
   top:0;
   left:0;
@@ -617,7 +623,8 @@ h1 {
   background:#222;
   z-index:9999999;
 }
-.site-loader span {
+.site-loader span,
+.site-error span.spinner {
   position:fixed;
   margin:auto;
   top:0;
@@ -640,6 +647,28 @@ h1 {
 @keyframes spinLoader {
   100%{-webkit-transform:rotate(360deg);transform:rotate(360deg);}
 }
+.site-error span.spinner {
+  top:-45%;
+}
+@media (min-width:600px) {
+  .site-error span.spinner {
+    top:-20%;
+  }
+}
+.site-error span.msg {
+  position: fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  font-size:2.2em;
+  width:90%;
+  max-width:860px;
+  padding-top:100px;
+  line-height: 1.4;
+  margin:0;
+  text-align:center;
+}
+
 .fade-enter-active, .fade-leave-active {
   -webkit-transition: opacity .5s;
   transition: opacity .5s
