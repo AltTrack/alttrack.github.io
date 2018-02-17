@@ -605,6 +605,46 @@ h1 {
   box-sizing: border-box;
 }
 
+.overall {
+  padding-bottom:40px;
+  border-bottom: 1px dotted rgba(255,255,255,0.2);
+}
+
+.overall_title {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px dotted rgba(255,255,255,0.2);
+}
+
+.overall_row {
+    padding:5px 0;
+    overflow: hidden;
+}
+
+.overall_row > div {
+    float:left;
+}
+
+.overall .overall_row:nth-child(2) {
+  font-family: 'Montserrat';
+  font-weight: 700;
+  padding-bottom:10px;
+}
+
+.overall_coin-name {
+  width:60%;
+}
+.overall_coin-cost {
+  width:15%;
+}
+.overall_coin-value {
+  width:15%;
+}
+.overall_coin-per {
+  width:10%;
+  text-align: right;
+}
+
 .clearfix:after {
   display:table;
   clear:both;

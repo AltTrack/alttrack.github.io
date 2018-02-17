@@ -35,7 +35,6 @@
 </head>
 <body>
   <div class="site-canvas" id="app" v-bind:class="{'coins-selected' : coinsToTrack.length, 'portfolio-view' : portfolio }">
-
     <!--  Select Coins / Setup  -->
     <transition name="fade">
     <div class="select-coins" v-if="coinData && !setup && loaded">
@@ -129,6 +128,51 @@
         <div class="portfolio_title">
           My Portfolio
         </div>
+        <div class="overall" v-if="userCoinDataExists()">
+          <div class="overall_title">Current Status</div>
+          <div class="overall_row">
+              <div class="overall_coin-name">
+                Coin
+              </div>
+              <div class="overall_coin-cost">
+                Cost
+              </div>
+              <div class="overall_coin-value">
+                Value
+              </div>
+              <div class="overall_coin-per">
+                  
+              </div>
+            </div>
+          <div class="overall_row" v-for="coin in updatedTrackedCoins()" v-if="marketValue(coin) > 0">
+            <div class="overall_coin-name">
+              {{coin.name}}
+            </div>
+            <div class="overall_coin-cost">
+              ${{getCoinCost(coin)}}
+            </div>
+            <div class="overall_coin-value">
+              ${{marketValue(coin)}}
+            </div>
+            <div class="overall_coin-per">
+                {{valueGain(coin)}}%
+            </div>
+          </div>
+          <div class="overall_row">
+            <div class="overall_coin-name">
+              Total
+            </div>
+            <div class="overall_coin-cost">
+              ${{overallStats().cost}}
+            </div>
+            <div class="overall_coin-value">
+              ${{overallStats().value}}
+            </div>
+            <div class="overall_coin-per">
+              {{overallStats().per}}%
+            </div>
+          </div>
+        </div>
         <div class="portfolio-list">
           <div class="portfolio-list_coin clearfix" v-for="coin in coinsToTrack">
             <div class="portfolio-list_coin-section">
@@ -160,9 +204,9 @@
     </div>
     </transition>
   </div>
-<script src='https://cdn.jsdelivr.net/npm/vue'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.2.1/vue-resource.min.js'></script>
-<script src='https://cdn.rawgit.com/nbubna/store/master/dist/store2.min.js'></script>
-<script  src="js/index.js?v1"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.2.1/vue-resource.min.js"></script>
+<script src="https://cdn.rawgit.com/nbubna/store/master/dist/store2.min.js"></script>
+<script  src="js/index.js?v1.0.1"></script>
 </body>
 </html>

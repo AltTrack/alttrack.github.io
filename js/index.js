@@ -111,9 +111,28 @@
           return Number(money.replace(/[^0-9\.]+/g,""));
         }
       },
+      userCoinDataExists: function() {
+        return this.coinsToTrack.some(c => c.quantity > 0 && c.cost > 0);
+      },
       closePortfolio: async function() {
         await this.saveCoins();
         this.portfolio = false;
+      },
+      overallStats: function() {
+        let cost = 0, value = 0, per = 0;
+        this.updatedTrackedCoins().forEach(coin => {
+          let v = this.marketValue(coin);
+          if(v > 0) {
+            cost = cost + this.getCoinCost(coin);
+            value = value + parseFloat(v);
+            per = per + parseFloat(this.valueGain(coin))
+          }
+        });
+        return {
+          cost: cost,
+          value: value,
+          per: per.toFixed(2)
+        }
       },
 
       // Convert Coin to Main Coin (Default Bitcoin *King*)
