@@ -130,7 +130,7 @@
         });
         return {
           cost: cost,
-          value: value,
+          value: value.toFixed(2),
           per: per.toFixed(2)
         }
       },
